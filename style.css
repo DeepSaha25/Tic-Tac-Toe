@@ -1,120 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+  --bg:#e8d5f0;
+  --nav:#4a0a4a;
+  --text:#111;
+  --panel:#fff;
+  --accent:#f2e5f7;
 }
 
 body{
-    background:#ac81be;
-    font-family:"Poppins", sans-serif;
+  margin:0;
+  font-family:"Poppins",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
 
 nav{
-    background:#4a0a4a;
-    color:white;
-    height:55px;
-    display:flex;
-    align-items:center;
-    padding-left:20px;
-    font-size:26px;
-    font-weight:600;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+  background:var(--nav);
+  color:white;
 }
 
-nav ul{ list-style:none; }
+.brand{ font-weight:600; font-size:18px; }
+.controls{ display:flex; gap:8px; align-items:center; }
 
-.heading{
-    text-align:center;
-    margin-top:20px;
+.controls button, .controls select{
+  padding:6px 8px;
+  border-radius:6px;
+  border:1px solid rgba(0,0,0,0.08);
+  background:white;
+  cursor:pointer;
+  font-weight:600;
 }
 
-.heading h1{
-    font-size:28px;
-    font-weight:600;
-}
+.heading{ text-align:center; margin-top:18px; }
+.heading h1{ margin:0; font-size:26px; font-weight:600; }
 
-.gameContainer{
-    margin-top:30px;
-    display:flex;
-    justify-content:center;
-}
+main{ display:flex; flex-direction:column; align-items:center; gap:18px; padding:18px 12px; }
+
+.boardWrap{ position:relative; }
 
 .container{
-    display:grid;
-    grid-template-columns:repeat(3,110px);
-    grid-template-rows:repeat(3,110px);
+  display:grid;
+  grid-template-columns:repeat(3,110px);
+  grid-template-rows:repeat(3,110px);
+  gap:0;
+  background:var(--panel);
 }
 
 .box{
-    border:2px solid black;
-    font-size:70px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    background:rgb(204, 206, 229);
-    user-select:none;
-    transition:0.1s;
+  border:2px solid black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
+  background:var(--panel);
+  cursor:pointer;
+  user-select:none;
 }
 
-.box:hover{
-    background:#f2e5f7;
-}
+.box:hover{ background:var(--accent); }
 
 .bottomBar{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
+  display:flex;
+  gap:18px;
+  align-items:center;
 }
 
-.bottomBar .info{
-    font-size:22px;
-    font-weight:600;
-}
+.info{ font-size:20px; font-weight:600; }
 
 #reset{
-    padding:6px 14px;
-    background:white;
-    border:2px solid black;
-    cursor:pointer;
-    font-weight:600;
-    border-radius:6px;
-    transition:0.2s;
+  padding:8px 14px;
+  border:2px solid black;
+  background:var(--panel);
+  cursor:pointer;
+  border-radius:6px;
+  font-weight:600;
 }
 
-#reset:hover{
-    background:#efe7ff;
-}
-
-.imgbox{
-    display:flex;
-    justify-content:center;
-    margin-top:10px;
-}
-
-.imgbox img{
-    width:0;
-    transition:width 0.6s ease;
-}
+.imgbox{ display:flex; justify-content:center; margin-top:6px; }
+.imgbox img{ width:0; transition:width .5s ease; }
 
 .bt{ border-top:0; }
 .bb{ border-bottom:0; }
 .bl{ border-left:0; }
 .br{ border-right:0; }
 
+.line{
+  position:absolute;
+  left:0;
+  top:0;
+  height:6px;
+  background:rgba(0,0,0,0.9);
+  transform-origin:left center;
+  width:0;
+  transition:width .35s ease, transform .35s ease, top .35s ease, left .35s ease;
+  border-radius:3px;
+  pointer-events:none;
+  display:none;
+}
+
+/* DARK MODE */
+body.dark{
+  --bg:#111;
+  --nav:#1a1a1a;
+  --text:#f2f2f2;
+  --panel:#1e1e1e;
+  --accent:#2a2a2a;
+}
+
+/* RESPONSIVE */
 @media (max-width:600px){
-    .container{
-        grid-template-columns:repeat(3,28vw);
-        grid-template-rows:repeat(3,28vw);
-    }
-    .box{
-        font-size:20vw;
-    }
-    .heading h1{
-        font-size:22px;
-    }
+  .container{
+    grid-template-columns:repeat(3,28vw);
+    grid-template-rows:repeat(3,28vw);
+  }
+  .box{ font-size:20vw; }
+  .heading h1{ font-size:20px; }
 }
